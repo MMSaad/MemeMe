@@ -54,14 +54,38 @@
 		455D9B7A21DE000F0035D99B /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				455D9B8F21DE00A20035D99B /* Utils */,
+				455D9B8E21DE00910035D99B /* Views */,
+				455D9B8D21DE00820035D99B /* Controllers */,
 				455D9B7B21DE000F0035D99B /* AppDelegate.swift */,
-				455D9B7D21DE000F0035D99B /* ViewController.swift */,
-				455D9B7F21DE000F0035D99B /* Main.storyboard */,
-				455D9B8221DE00100035D99B /* Assets.xcassets */,
-				455D9B8421DE00100035D99B /* LaunchScreen.storyboard */,
 				455D9B8721DE00100035D99B /* Info.plist */,
 			);
 			path = MemeMe;
+			sourceTree = "<group>";
+		};
+		455D9B8D21DE00820035D99B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				455D9B7D21DE000F0035D99B /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		455D9B8E21DE00910035D99B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				455D9B8421DE00100035D99B /* LaunchScreen.storyboard */,
+				455D9B7F21DE000F0035D99B /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		455D9B8F21DE00A20035D99B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				455D9B8221DE00100035D99B /* Assets.xcassets */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
