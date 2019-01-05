@@ -10,75 +10,109 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UxZ-zm-YrH">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UxZ-zm-YrH" userLabel="TopToolbar">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="7kn-Qg-UEl"/>
+                                    <barButtonItem systemItem="action" id="7kn-Qg-UEl">
+                                        <connections>
+                                            <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="eNB-er-4sf"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="x1i-pU-xB4"/>
-                                    <barButtonItem title="Cancel" id="wB8-JB-Syg"/>
+                                    <barButtonItem title="Cancel" id="wB8-JB-Syg">
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="eFx-gR-CB5"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbx-WF-BiN">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMp-0E-22B">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZf-zP-4cp">
-                                <rect key="frame" x="0.0" y="102" width="375" height="26.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-8y-bSh">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbx-WF-BiN">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TEXT GOES HERE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PNg-24-oaZ">
+                                        <rect key="frame" x="0.0" y="16" width="375" height="23"/>
+                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TEXT GOES HERE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uji-3r-jt0">
+                                        <rect key="frame" x="0.0" y="522" width="375" height="21"/>
+                                        <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Uji-3r-jt0" secondAttribute="bottom" constant="16" id="483-V0-goi"/>
+                                    <constraint firstItem="PNg-24-oaZ" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="5fG-2u-tZw"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uji-3r-jt0" secondAttribute="trailing" id="OZk-za-Nwm"/>
+                                    <constraint firstItem="Uji-3r-jt0" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="R6j-7n-9Dz"/>
+                                    <constraint firstAttribute="bottom" secondItem="qbx-WF-BiN" secondAttribute="bottom" id="fux-3D-CXb"/>
+                                    <constraint firstItem="PNg-24-oaZ" firstAttribute="top" secondItem="CMp-0E-22B" secondAttribute="top" constant="16" id="gPp-zn-LM0"/>
+                                    <constraint firstItem="qbx-WF-BiN" firstAttribute="top" secondItem="CMp-0E-22B" secondAttribute="top" id="mk9-qe-Drr"/>
+                                    <constraint firstAttribute="trailing" secondItem="qbx-WF-BiN" secondAttribute="trailing" id="oFu-e8-nKn"/>
+                                    <constraint firstAttribute="trailing" secondItem="PNg-24-oaZ" secondAttribute="trailing" id="yRj-H8-759"/>
+                                    <constraint firstItem="qbx-WF-BiN" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="z4k-Q7-OoV"/>
+                                </constraints>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-8y-bSh" userLabel="BottomToolbar">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oma-oc-w8w"/>
-                                    <barButtonItem systemItem="camera" id="I5Y-14-wSP"/>
+                                    <barButtonItem systemItem="camera" id="I5Y-14-wSP">
+                                        <connections>
+                                            <action selector="cameraButtonPressed:" destination="BYZ-38-t0r" id="7Gt-lX-qxO"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GZj-2R-BrP"/>
-                                    <barButtonItem title="Album" id="BVE-kM-Oao"/>
+                                    <barButtonItem title="Album" id="BVE-kM-Oao">
+                                        <connections>
+                                            <action selector="albumButtonPressed:" destination="BYZ-38-t0r" id="Iij-oZ-AD0"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1ve-bp-d6O"/>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-9H-Ujn">
-                                <rect key="frame" x="0.0" y="559" width="375" height="26.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UxZ-zm-YrH" secondAttribute="trailing" id="2k8-Iv-3ga"/>
-                            <constraint firstItem="qbx-WF-BiN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9Mo-U9-fB4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TfJ-9H-Ujn" secondAttribute="trailing" id="BYz-qY-RYg"/>
-                            <constraint firstItem="FZf-zP-4cp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LLX-Kl-8I1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qbx-WF-BiN" secondAttribute="trailing" id="NH9-Qf-bi2"/>
-                            <constraint firstItem="FZf-zP-4cp" firstAttribute="top" secondItem="UxZ-zm-YrH" secondAttribute="bottom" constant="38" id="Rhe-pD-JNb"/>
+                            <constraint firstItem="CMp-0E-22B" firstAttribute="top" secondItem="UxZ-zm-YrH" secondAttribute="bottom" id="8Qq-Zl-VdI"/>
+                            <constraint firstItem="CMp-0E-22B" firstAttribute="bottom" secondItem="Iw2-8y-bSh" secondAttribute="top" id="Jdi-WU-1Hg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iw2-8y-bSh" secondAttribute="trailing" id="SsK-7t-Ya5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Iw2-8y-bSh" secondAttribute="bottom" id="TbA-vN-zGf"/>
-                            <constraint firstItem="TfJ-9H-Ujn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XcE-dP-Dcd"/>
                             <constraint firstItem="UxZ-zm-YrH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bA8-sE-8sE"/>
                             <constraint firstItem="Iw2-8y-bSh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cV9-bl-6S9"/>
-                            <constraint firstItem="qbx-WF-BiN" firstAttribute="top" secondItem="UxZ-zm-YrH" secondAttribute="bottom" id="hJf-a6-bpw"/>
+                            <constraint firstItem="CMp-0E-22B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gwC-ci-OYD"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CMp-0E-22B" secondAttribute="trailing" id="hgf-Mf-TeH"/>
                             <constraint firstItem="UxZ-zm-YrH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ldc-wo-iFS"/>
-                            <constraint firstItem="Iw2-8y-bSh" firstAttribute="top" secondItem="qbx-WF-BiN" secondAttribute="bottom" id="lej-xe-BVZ"/>
-                            <constraint firstItem="Iw2-8y-bSh" firstAttribute="top" secondItem="TfJ-9H-Ujn" secondAttribute="bottom" constant="37.5" id="tbW-po-Oqe"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FZf-zP-4cp" secondAttribute="trailing" id="voN-Ax-bxf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomTextField" destination="Uji-3r-jt0" id="7tj-iI-yFK"/>
+                        <outlet property="cameraButton" destination="I5Y-14-wSP" id="40Z-oc-JqW"/>
+                        <outlet property="memeAreaView" destination="CMp-0E-22B" id="eUh-V7-amA"/>
+                        <outlet property="memeImageView" destination="qbx-WF-BiN" id="NiT-3u-JFV"/>
+                        <outlet property="topTextEditor" destination="PNg-24-oaZ" id="jW4-Ft-4ZG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
