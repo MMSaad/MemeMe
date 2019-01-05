@@ -84,6 +84,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1ve-bp-d6O"/>
+                                    <barButtonItem title="Customize" id="K6c-zE-Hd5">
+                                        <connections>
+                                            <action selector="customizeButtonPressed:" destination="BYZ-38-t0r" id="VIu-sc-f5H"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -105,14 +110,124 @@
                     <connections>
                         <outlet property="bottomTextField" destination="Uji-3r-jt0" id="7tj-iI-yFK"/>
                         <outlet property="cameraButton" destination="I5Y-14-wSP" id="40Z-oc-JqW"/>
+                        <outlet property="customizaButton" destination="K6c-zE-Hd5" id="Vox-Zz-3AL"/>
                         <outlet property="memeAreaView" destination="CMp-0E-22B" id="eUh-V7-amA"/>
                         <outlet property="memeImageView" destination="qbx-WF-BiN" id="NiT-3u-JFV"/>
                         <outlet property="topTextEditor" destination="PNg-24-oaZ" id="jW4-Ft-4ZG"/>
+                        <segue destination="Zsu-G5-hbV" kind="presentation" identifier="customizeFonts" id="EtJ-zM-VcR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-295" y="130"/>
+        </scene>
+        <!--Customize Fonts View Controller-->
+        <scene sceneID="c6c-2B-JPF">
+            <objects>
+                <viewController id="Zsu-G5-hbV" customClass="CustomizeFontsViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="msl-9h-YY6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRU-Pw-jo7">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="hf8-ZT-qAm">
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="Zsu-G5-hbV" id="XYJ-uC-5C9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="65f-qd-cyn"/>
+                                    <barButtonItem title="Save" id="OHS-x6-n9O">
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="Zsu-G5-hbV" id="WQq-Mb-64r"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Family" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cir-zk-cdo">
+                                <rect key="frame" x="16" y="71" width="88" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPF-xg-xPb">
+                                <rect key="frame" x="0.0" y="100" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Zsu-G5-hbV" id="Fnd-bk-0of"/>
+                                    <outlet property="delegate" destination="Zsu-G5-hbV" id="YRk-a1-BgP"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4X-pb-gzU">
+                                <rect key="frame" x="16" y="324" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ix8-Mq-aiX">
+                                <rect key="frame" x="338" y="323" width="21" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="x0E-2B-4Eh">
+                                <rect key="frame" x="16" y="353" width="345" height="31"/>
+                                <connections>
+                                    <action selector="fontSizeSliderValueChanged:" destination="Zsu-G5-hbV" eventType="valueChanged" id="Q2g-Gy-9aU"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAX-Bh-MAt">
+                                <rect key="frame" x="16" y="391" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEXT GOES HERE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mp-9a-Cgo">
+                                <rect key="frame" x="18" y="420" width="341" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" secondItem="x0E-2B-4Eh" secondAttribute="trailing" constant="16" id="3NY-iB-RJr"/>
+                            <constraint firstItem="aRU-Pw-jo7" firstAttribute="top" secondItem="pPz-rl-8I4" secondAttribute="top" id="4Hj-a9-U4M"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" secondItem="ix8-Mq-aiX" secondAttribute="trailing" constant="16" id="4lr-cw-5NH"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="C4X-pb-gzU" secondAttribute="trailing" constant="288" id="6Go-Jg-dJe"/>
+                            <constraint firstItem="ix8-Mq-aiX" firstAttribute="top" secondItem="wPF-xg-xPb" secondAttribute="bottom" constant="7" id="9Ql-Cu-25a"/>
+                            <constraint firstItem="Cir-zk-cdo" firstAttribute="top" secondItem="pPz-rl-8I4" secondAttribute="top" constant="51" id="BPc-FU-H6d"/>
+                            <constraint firstItem="6mp-9a-Cgo" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="18" id="GE5-I9-jIn"/>
+                            <constraint firstItem="6mp-9a-Cgo" firstAttribute="top" secondItem="SAX-Bh-MAt" secondAttribute="bottom" constant="8" id="Kmv-PP-FsF"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" secondItem="6mp-9a-Cgo" secondAttribute="trailing" constant="16" id="L3J-Un-cdx"/>
+                            <constraint firstItem="x0E-2B-4Eh" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="18" id="NC7-Wv-ZLe"/>
+                            <constraint firstItem="ix8-Mq-aiX" firstAttribute="leading" relation="lessThanOrEqual" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="338" id="Qed-XB-oaE"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="SAX-Bh-MAt" secondAttribute="trailing" constant="298" id="c2T-NG-bQo"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" secondItem="wPF-xg-xPb" secondAttribute="trailing" id="c3E-Ui-oD0"/>
+                            <constraint firstItem="C4X-pb-gzU" firstAttribute="top" secondItem="wPF-xg-xPb" secondAttribute="bottom" constant="8" id="f7M-7S-ffH"/>
+                            <constraint firstItem="SAX-Bh-MAt" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="16" id="hyG-pI-2ff"/>
+                            <constraint firstItem="aRU-Pw-jo7" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" id="i4F-jd-qHu"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" secondItem="aRU-Pw-jo7" secondAttribute="trailing" id="itm-ca-dNj"/>
+                            <constraint firstItem="wPF-xg-xPb" firstAttribute="top" secondItem="Cir-zk-cdo" secondAttribute="bottom" constant="8" id="jw6-Vl-Dv4"/>
+                            <constraint firstItem="SAX-Bh-MAt" firstAttribute="top" secondItem="x0E-2B-4Eh" secondAttribute="bottom" constant="8" id="lfn-Zv-JUK"/>
+                            <constraint firstItem="x0E-2B-4Eh" firstAttribute="top" secondItem="C4X-pb-gzU" secondAttribute="bottom" constant="8" id="mcj-JO-vkM"/>
+                            <constraint firstItem="Cir-zk-cdo" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="16" id="nYJ-pM-Vdw"/>
+                            <constraint firstItem="wPF-xg-xPb" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" id="pFK-5d-xNk"/>
+                            <constraint firstItem="C4X-pb-gzU" firstAttribute="leading" secondItem="pPz-rl-8I4" secondAttribute="leading" constant="16" id="ugN-mm-ai2"/>
+                            <constraint firstItem="pPz-rl-8I4" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Cir-zk-cdo" secondAttribute="trailing" constant="271" id="xre-vf-SJu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pPz-rl-8I4"/>
+                    </view>
+                    <connections>
+                        <outlet property="fontSizeLabel" destination="ix8-Mq-aiX" id="irZ-aF-fuZ"/>
+                        <outlet property="fontSizeSlider" destination="x0E-2B-4Eh" id="gcT-6w-Dsy"/>
+                        <outlet property="fontsPicker" destination="wPF-xg-xPb" id="lYI-9H-wPd"/>
+                        <outlet property="previewLabel" destination="6mp-9a-Cgo" id="Fly-jf-hQz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSs-nv-hyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="664.79999999999995" y="129.98500749625188"/>
         </scene>
     </scenes>
 </document>

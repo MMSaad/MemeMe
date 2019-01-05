@@ -11,6 +11,10 @@ import UIKit
 struct Meme {
     var topMessage:String
     var bottomMessage:String
-    var originalImage:UIImage
-    var memeImage:UIImage
+    
+    var originalImage:UIImage?
+    var memeImage:UIImage?
+    
+    var fontFamily = "HelveticaNeue-CondensedBlack"
+    var fontSize:Float = 30
 }
