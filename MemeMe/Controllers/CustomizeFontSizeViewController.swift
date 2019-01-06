@@ -23,6 +23,9 @@ class CustomizeFontSizeViewController: UIViewController {
         bindUi()
     }
     
+    /**
+     Update Slider value
+     */
     func bindUi(){
         self.fontSizeSlider.value = fontSize
     }

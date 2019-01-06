@@ -23,6 +23,9 @@ class ColorPickerViewController: UIViewController,UICollectionViewDelegate,UICol
         buildColorList()
     }
     
+    /**
+     Add some color as example
+    */
     func buildColorList(){
         // Add demo color list
        colors = [UIColor.red,UIColor.white,UIColor.green,UIColor.blue,UIColor.cyan,UIColor.gray,UIColor.brown,UIColor.magenta,UIColor.purple,UIColor.orange,UIColor.yellow]
@@ -34,7 +37,7 @@ class ColorPickerViewController: UIViewController,UICollectionViewDelegate,UICol
     }
     
 
-    // MARK: Collection View Data Source Implementation
+    // MARK: CollectionView Data Source protocol Implementation
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.colors.count
     }
@@ -51,10 +54,9 @@ class ColorPickerViewController: UIViewController,UICollectionViewDelegate,UICol
     }
     
     
-    // MARK: Collectiom view delegate implementation
+    // MARK: Collectiomview delegate protocol implementation
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         self.memeDelegate.colorChanged(color:colors[indexPath.row])
-        //self.dismiss(animated: true, completion: nil)
     }
 
 }

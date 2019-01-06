@@ -23,8 +23,10 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
          loadFonts()
     }
     
+    /**
+     Load system fonts 
+     */
     func loadFonts(){
-        
         for  family in UIFont.familyNames{
             for  name in UIFont.fontNames(forFamilyName: family ){
                 fontList.append(name)
@@ -37,7 +39,7 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
     }
     
 
-    // MARK: PICKER VIEW DATA SOURCE IMPLEMENTATION
+    // MARK: PickerView Data source protocol implementation
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
     }
@@ -52,6 +54,9 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
         return fontList[row];
     }
     
+    
+  
+    // MARK: PickerView Delegate protocol implementation
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         self.fontName = fontList[row]
         memeDelegate.fontFamilyChanged(newFont: self.fontName)

@@ -37,6 +37,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.bottomTextField.text = self.meme.bottomMessage
         self.memeImageView.image = self.meme.originalImage
         self.shareMemeButton.isEnabled = self.meme.originalImage != nil
+        formatTextFields()
     }
     
     func formatTextFields(){
@@ -108,7 +109,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     // MARK: UI Actions
-    
     @IBAction func shareButtonPressed(_ sender: Any) {
         let image =  generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: [])
@@ -140,30 +140,35 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     @IBAction func customizeButtonPressed(_ sender: Any) {
-        //
-//        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
-//            ctrl.fontName = self.meme.fontFamily
-//            ctrl.memeDelegate = self
-//            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
-//            bottomSheet.title = "Customize Font Family"
-//            present(bottomSheet, animated: true, completion: nil)
-//        }
+        let sheet = UIAlertController(title: nil, message: "Customization", preferredStyle: .actionSheet)
+        sheet.addAction(UIAlertAction(title: "Font Family", style: .default, handler: { (UIAlertAction) in
+            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
+                ctrl.fontName = self.meme.fontFamily
+                ctrl.memeDelegate = self
+                self.showBottomSheet(controller: ctrl)
+            }
+        }))
+        sheet.addAction(UIAlertAction(title: "Font size", style: .default, handler: { (a) in
+            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
+                ctrl.fontSize = self.meme.fontSize
+                ctrl.memeDelegate = self
+                self.showBottomSheet(controller: ctrl)
+            }
+        }))
+        sheet.addAction(UIAlertAction(title: "Font Color", style: .default, handler: { (a) in
+            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
+                ctrl.selectedColor = self.meme.fontColor
+                ctrl.memeDelegate = self
+                self.showBottomSheet(controller: ctrl)
+            }
+        }))
         
-//        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
-//            ctrl.fontSize = self.meme.fontSize
-//            ctrl.memeDelegate = self
-//            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
-//            bottomSheet.title = "Customize Font Size"
-//            present(bottomSheet, animated: true, completion: nil)
-//        }
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) in
+            sheet.dismiss(animated: true, completion: nil)
+        }))
+        sheet.popoverPresentationController?.sourceView = memeImageView
+        present(sheet, animated: true, completion: nil)
         
-        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
-            ctrl.selectedColor = self.meme.fontColor
-            ctrl.memeDelegate = self
-            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
-            bottomSheet.title = "Customize Font Color"
-            present(bottomSheet, animated: true, completion: nil)
-        }
     }
     
     
@@ -177,10 +182,15 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         return memedImage
     }
     
+    func showBottomSheet(controller:UIViewController){
+        let bottomSheet = MDCBottomSheetController(contentViewController: controller)
+        self.present(bottomSheet, animated: true, completion: nil)
+    }
     
     
     
-    // MARK: UITextFieldDelegate Implementation
+    
+    // MARK: UITextFieldDelegate protocol Implementation
     public func textFieldDidBeginEditing(_ textField: UITextField){
         activeTextField = textField
         textField.text = ""
@@ -193,7 +203,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     
-    // MARK: UIImagePickerControllerDelegate Implementation
+    // MARK: UIImagePickerControllerDelegate protocol Implementation
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         print(info)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
@@ -203,7 +213,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         picker.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Meme Delegate
+    // MARK: MemeDelegate protocol implementation
     public func fontFamilyChanged(newFont:String){
         self.meme.fontFamily = newFont
         self.formatTextFields()

@@ -146,7 +146,8 @@
                         <viewLayoutGuide key="safeArea" id="E5Q-5U-1Pz"/>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="fontsPicker" destination="jqd-t9-Zwf" id="OuO-zs-GDh"/>
                     </connections>
@@ -278,21 +279,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cs6-em-jQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2900" y="126"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="c4Q-Xo-z8i">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="W9x-nA-sbo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OyR-o3-gvs">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="txz-M8-Xhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-295.19999999999999" y="129.98500749625188"/>
         </scene>
     </scenes>
 </document>
