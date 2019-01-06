@@ -84,6 +84,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1ve-bp-d6O"/>
+                                    <barButtonItem title="Customize" id="IgJ-4f-jFe">
+                                        <connections>
+                                            <action selector="customizeButtonPressed:" destination="BYZ-38-t0r" id="n15-Ws-Ro1"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -115,6 +120,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="644" y="129.98500749625188"/>
+        </scene>
+        <!--Customize Font Family View Controller-->
+        <scene sceneID="0ud-Cc-deK">
+            <objects>
+                <viewController storyboardIdentifier="FontFamilyBottomSheet" id="edQ-wO-Y2A" customClass="CustomizeFontFamilyViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WTY-vG-S2t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-t9-Zwf">
+                                <rect key="frame" x="0.0" y="20" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="edQ-wO-Y2A" id="Tkl-6e-2q7"/>
+                                    <outlet property="delegate" destination="edQ-wO-Y2A" id="2OP-dJ-lU8"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="E5Q-5U-1Pz" firstAttribute="trailing" secondItem="jqd-t9-Zwf" secondAttribute="trailing" id="IOf-L2-R2D"/>
+                            <constraint firstItem="jqd-t9-Zwf" firstAttribute="top" secondItem="E5Q-5U-1Pz" secondAttribute="top" id="iWS-M7-6sP"/>
+                            <constraint firstItem="jqd-t9-Zwf" firstAttribute="leading" secondItem="E5Q-5U-1Pz" secondAttribute="leading" id="v6S-ze-mx0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="E5Q-5U-1Pz"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="fontsPicker" destination="jqd-t9-Zwf" id="OuO-zs-GDh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WsM-oF-5ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4Q-Xo-z8i">

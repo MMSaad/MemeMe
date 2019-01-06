@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MaterialComponents.MaterialBottomSheet
 
-class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
+class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var memeAreaView: UIView!
@@ -38,9 +39,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.shareMemeButton.isEnabled = self.meme.originalImage != nil
     }
     
-    func setupTextFields(){
-        bottomTextField.delegate = self
-        topTextEditor.delegate = self
+    func formatTextFields(){
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.darkGray,
             NSAttributedString.Key.strokeWidth:  -3.0,
@@ -51,6 +50,12 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         topTextEditor.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .center
         topTextEditor.textAlignment = .center
+    }
+    
+    func setupTextFields(){
+        bottomTextField.delegate = self
+        topTextEditor.delegate = self
+        formatTextFields()
         bindUi()
     }
     
@@ -134,6 +139,17 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func customizeButtonPressed(_ sender: Any) {
+        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
+            ctrl.fontName = self.meme.fontFamily
+            ctrl.memeDelegate = self
+            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
+            bottomSheet.title = "Customize Font Family"
+            present(bottomSheet, animated: true, completion: nil)
+        }
+    }
+    
+    
     
     // MARK : Helper Methods
     func generateMemedImage() -> UIImage {
@@ -168,6 +184,12 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             self.bindUi()
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Meme Delegate
+    public func fontFamilyChanged(newFont:String){
+        self.meme.fontFamily = newFont
+        self.formatTextFields()
     }
     
 }
