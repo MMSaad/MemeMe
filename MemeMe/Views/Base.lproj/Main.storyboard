@@ -155,6 +155,65 @@
             </objects>
             <point key="canvasLocation" x="1494" y="130"/>
         </scene>
+        <!--Customize Font Size View Controller-->
+        <scene sceneID="MD4-af-lLV">
+            <objects>
+                <viewController storyboardIdentifier="FontSizeBottomSheet" id="CYn-rG-PRe" customClass="CustomizeFontSizeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xsm-kA-Nmm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATl-Cm-f4k">
+                                <rect key="frame" x="8" y="20" width="359" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gb-6c-QME">
+                                        <rect key="frame" x="8" y="15" width="18" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="10" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="doO-EP-Mhk">
+                                        <rect key="frame" x="32" y="10" width="284.5" height="31"/>
+                                        <connections>
+                                            <action selector="fontSizeSliderValueChanged:" destination="CYn-rG-PRe" eventType="valueChanged" id="UhN-oe-53P"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPY-1a-LY2">
+                                        <rect key="frame" x="322.5" y="15" width="28.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="doO-EP-Mhk" firstAttribute="centerY" secondItem="ATl-Cm-f4k" secondAttribute="centerY" id="4fM-b1-XDc"/>
+                                    <constraint firstItem="hPY-1a-LY2" firstAttribute="centerY" secondItem="ATl-Cm-f4k" secondAttribute="centerY" id="DA5-Kr-Gyw"/>
+                                    <constraint firstAttribute="trailing" secondItem="hPY-1a-LY2" secondAttribute="trailing" constant="8" id="ZmB-7a-Gwv"/>
+                                    <constraint firstItem="doO-EP-Mhk" firstAttribute="trailing" secondItem="hPY-1a-LY2" secondAttribute="leading" constant="-8" id="ao2-9c-oHr"/>
+                                    <constraint firstItem="doO-EP-Mhk" firstAttribute="leading" secondItem="4gb-6c-QME" secondAttribute="trailing" constant="8" id="gjc-RA-gPo"/>
+                                    <constraint firstItem="4gb-6c-QME" firstAttribute="centerY" secondItem="ATl-Cm-f4k" secondAttribute="centerY" id="iHu-iu-qmm"/>
+                                    <constraint firstItem="4gb-6c-QME" firstAttribute="leading" secondItem="ATl-Cm-f4k" secondAttribute="leading" constant="8" id="kIu-4Y-3t5"/>
+                                    <constraint firstAttribute="height" constant="50" id="xFE-pq-nMA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ATl-Cm-f4k" firstAttribute="top" secondItem="KH4-7h-8hX" secondAttribute="top" id="WKe-T1-ScC"/>
+                            <constraint firstItem="ATl-Cm-f4k" firstAttribute="leading" secondItem="KH4-7h-8hX" secondAttribute="leading" constant="8" id="kDN-vG-eKM"/>
+                            <constraint firstItem="KH4-7h-8hX" firstAttribute="trailing" secondItem="ATl-Cm-f4k" secondAttribute="trailing" constant="8" id="rQe-mT-jy9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KH4-7h-8hX"/>
+                    </view>
+                    <connections>
+                        <outlet property="fontSizeSlider" destination="doO-EP-Mhk" id="kTk-XI-UiO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78v-bw-Fvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2242" y="127"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4Q-Xo-z8i">
             <objects>

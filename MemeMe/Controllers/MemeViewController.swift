@@ -140,11 +140,20 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     @IBAction func customizeButtonPressed(_ sender: Any) {
-        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
-            ctrl.fontName = self.meme.fontFamily
+        //
+//        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
+//            ctrl.fontName = self.meme.fontFamily
+//            ctrl.memeDelegate = self
+//            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
+//            bottomSheet.title = "Customize Font Family"
+//            present(bottomSheet, animated: true, completion: nil)
+//        }
+        
+        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
+            ctrl.fontSize = self.meme.fontSize
             ctrl.memeDelegate = self
             let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
-            bottomSheet.title = "Customize Font Family"
+            bottomSheet.title = "Customize Font Size"
             present(bottomSheet, animated: true, completion: nil)
         }
     }
@@ -189,6 +198,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: Meme Delegate
     public func fontFamilyChanged(newFont:String){
         self.meme.fontFamily = newFont
+        self.formatTextFields()
+    }
+    
+    public  func fontSizeChanged(newFontSize:Float){
+        self.meme.fontSize = newFontSize
         self.formatTextFields()
     }
     
