@@ -6,9 +6,10 @@
 //  Copyright © 2019 Ara Tech. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MemeDelegate {
     func fontFamilyChanged(newFont:String)
     func fontSizeChanged(newFontSize:Float)
+    func colorChanged(color:UIColor)
 }

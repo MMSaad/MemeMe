@@ -28,7 +28,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40)
+        self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40,fontColor:UIColor.white)
         setupTextFields()
     }
     
@@ -43,7 +43,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.darkGray,
             NSAttributedString.Key.strokeWidth:  -3.0,
-            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.foregroundColor: self.meme.fontColor,
             NSAttributedString.Key.font: UIFont(name: meme.fontFamily, size: CGFloat(meme.fontSize))!
         ]
         bottomTextField.defaultTextAttributes = memeTextAttributes
@@ -149,11 +149,19 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
 //            present(bottomSheet, animated: true, completion: nil)
 //        }
         
-        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
-            ctrl.fontSize = self.meme.fontSize
+//        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
+//            ctrl.fontSize = self.meme.fontSize
+//            ctrl.memeDelegate = self
+//            let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
+//            bottomSheet.title = "Customize Font Size"
+//            present(bottomSheet, animated: true, completion: nil)
+//        }
+        
+        if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
+            ctrl.selectedColor = self.meme.fontColor
             ctrl.memeDelegate = self
             let bottomSheet = MDCBottomSheetController(contentViewController: ctrl)
-            bottomSheet.title = "Customize Font Size"
+            bottomSheet.title = "Customize Font Color"
             present(bottomSheet, animated: true, completion: nil)
         }
     }
@@ -203,6 +211,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     public  func fontSizeChanged(newFontSize:Float){
         self.meme.fontSize = newFontSize
+        self.formatTextFields()
+    }
+    
+    public func colorChanged(color:UIColor){
+        self.meme.fontColor = color
         self.formatTextFields()
     }
     

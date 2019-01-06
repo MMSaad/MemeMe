@@ -214,6 +214,71 @@
             </objects>
             <point key="canvasLocation" x="2242" y="127"/>
         </scene>
+        <!--Color Picker View Controller-->
+        <scene sceneID="GXa-zl-xMO">
+            <objects>
+                <viewController storyboardIdentifier="FontColorBottomSheet" id="YOv-fR-lwh" customClass="ColorPickerViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N4I-KF-Mm5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aZB-hf-sib">
+                                <rect key="frame" x="8" y="20" width="359" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="02e-l3-qLE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCellView" id="UAX-kB-F0w" customClass="ColorCollectionViewCell" customModule="MemeMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTK-FN-2ny">
+                                                    <rect key="frame" x="1" y="1" width="48" height="48"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bTK-FN-2ny" secondAttribute="trailing" constant="1" id="MFK-19-8Je"/>
+                                            <constraint firstItem="bTK-FN-2ny" firstAttribute="leading" secondItem="UAX-kB-F0w" secondAttribute="leading" constant="1" id="Rmd-6d-lHm"/>
+                                            <constraint firstItem="bTK-FN-2ny" firstAttribute="top" secondItem="UAX-kB-F0w" secondAttribute="top" constant="1" id="Zp1-IQ-Lgo"/>
+                                            <constraint firstAttribute="bottom" secondItem="bTK-FN-2ny" secondAttribute="bottom" constant="1" id="hSZ-Gv-FFF"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="view" destination="bTK-FN-2ny" id="azU-oT-d5V"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="YOv-fR-lwh" id="kFi-TL-znv"/>
+                                    <outlet property="delegate" destination="YOv-fR-lwh" id="jFH-Ma-n5C"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PZw-vn-Mq0" firstAttribute="bottom" secondItem="aZB-hf-sib" secondAttribute="bottom" id="5VS-hR-D0X"/>
+                            <constraint firstItem="aZB-hf-sib" firstAttribute="top" secondItem="PZw-vn-Mq0" secondAttribute="top" id="66n-YU-rjB"/>
+                            <constraint firstItem="aZB-hf-sib" firstAttribute="leading" secondItem="PZw-vn-Mq0" secondAttribute="leading" constant="8" id="FNg-SV-32V"/>
+                            <constraint firstItem="PZw-vn-Mq0" firstAttribute="trailing" secondItem="aZB-hf-sib" secondAttribute="trailing" constant="8" id="Thv-dM-iyR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PZw-vn-Mq0"/>
+                    </view>
+                    <connections>
+                        <outlet property="colorsCollectionView" destination="aZB-hf-sib" id="dPd-9Y-YiN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cs6-em-jQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2900" y="126"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="c4Q-Xo-z8i">
             <objects>

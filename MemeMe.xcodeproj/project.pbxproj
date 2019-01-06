@@ -17,6 +17,8 @@
 		45F24ACF21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24ACE21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift */; };
 		45F24AD221E211DC00B60BA3 /* MemeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD121E211DC00B60BA3 /* MemeDelegate.swift */; };
 		45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */; };
+		45F24AD721E2216800B60BA3 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD621E2216800B60BA3 /* ColorCollectionViewCell.swift */; };
+		45F24AD921E2224C00B60BA3 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD821E2224C00B60BA3 /* ColorPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		45F24ACE21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeFontFamilyViewController.swift; sourceTree = "<group>"; };
 		45F24AD121E211DC00B60BA3 /* MemeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDelegate.swift; sourceTree = "<group>"; };
 		45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeFontSizeViewController.swift; sourceTree = "<group>"; };
+		45F24AD621E2216800B60BA3 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
+		45F24AD821E2224C00B60BA3 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		A1C39776338B9D51ED9F809F /* Pods-MemeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B30D0969F6D5115735A243 /* Pods-MemeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +89,7 @@
 		455D9B7A21DE000F0035D99B /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				45F24AD521E2214200B60BA3 /* Cells */,
 				45F24AD021E211CE00B60BA3 /* Protocols */,
 				452C122921DFF79A009B00C4 /* Helpers */,
 				455D9B9021DE04E80035D99B /* Data */,
@@ -103,6 +108,7 @@
 				455D9B9321DE05500035D99B /* MemeViewController.swift */,
 				45F24ACE21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift */,
 				45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */,
+				45F24AD821E2224C00B60BA3 /* ColorPickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -138,6 +144,14 @@
 				45F24AD121E211DC00B60BA3 /* MemeDelegate.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		45F24AD521E2214200B60BA3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				45F24AD621E2216800B60BA3 /* ColorCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F7036C345F47ED33576601B5 /* Frameworks */ = {
@@ -261,10 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F24AD221E211DC00B60BA3 /* MemeDelegate.swift in Sources */,
+				45F24AD721E2216800B60BA3 /* ColorCollectionViewCell.swift in Sources */,
 				455D9B9221DE04FA0035D99B /* Meme.swift in Sources */,
 				45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */,
 				45F24ACF21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift in Sources */,
 				455D9B9421DE05500035D99B /* MemeViewController.swift in Sources */,
+				45F24AD921E2224C00B60BA3 /* ColorPickerViewController.swift in Sources */,
 				455D9B7C21DE000F0035D99B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
