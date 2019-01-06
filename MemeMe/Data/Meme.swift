@@ -15,6 +15,13 @@ struct Meme {
     var originalImage:UIImage?
     var memeImage:UIImage?
     
-    var fontFamily = "HelveticaNeue-CondensedBlack"
-    var fontSize:Float = 30
+    var fontFamily:String
+    var fontSize:Float
+    
+    mutating func reset(){
+        bottomMessage = "TEXT GOES HERE"
+        topMessage = "TEXT GOES HERE"
+        memeImage = nil
+        originalImage = nil
+    }
 }

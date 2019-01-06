@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,CustomizeFontDelegate {
+class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var memeAreaView: UIView!
@@ -16,8 +16,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBOutlet weak var topTextEditor: UITextField!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var cameraButton:UIBarButtonItem!
-    
-    @IBOutlet weak var customizaButton: UIBarButtonItem!
+    @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     
     // MARK: Vars
     var activeTextField:UITextField?
@@ -25,39 +24,38 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     
     
-    
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.meme = Meme(topMessage:"",bottomMessage:"",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40)
+        self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40)
         setupTextFields()
     }
     
     func bindUi(){
-        let memeTextAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.strokeColor: UIColor.darkGray,
-            NSAttributedString.Key.strokeWidth:  -3.0,
-            
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: meme.fontFamily, size: CGFloat(meme.fontSize))!
-            
-        ]
-        
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextEditor.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
-        topTextEditor.textAlignment = .center
+        self.topTextEditor.text = self.meme.topMessage
+        self.bottomTextField.text = self.meme.bottomMessage
+        self.memeImageView.image = self.meme.originalImage
+        self.shareMemeButton.isEnabled = self.meme.originalImage != nil
     }
     
     func setupTextFields(){
         bottomTextField.delegate = self
         topTextEditor.delegate = self
-    
+        let memeTextAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.strokeColor: UIColor.darkGray,
+            NSAttributedString.Key.strokeWidth:  -3.0,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: meme.fontFamily, size: CGFloat(meme.fontSize))!
+        ]
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextEditor.defaultTextAttributes = memeTextAttributes
+        bottomTextField.textAlignment = .center
+        topTextEditor.textAlignment = .center
         bindUi()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
@@ -72,6 +70,8 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     
+    
+    // MARK: Keyboard Notifications
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -105,7 +105,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: UI Actions
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-       // let memeImage = generateMemedImage()
         let image =  generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -115,14 +114,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             }
         }
         present(activityController, animated: true, completion: nil)
-        
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        //reset
-        topTextEditor.text = "TEXT GOES HERE"
-        bottomTextField.text = "TEXT GOES HERE"
-        memeImageView.image = nil
+        self.meme.reset()
+        self.bindUi()
     }
     
     
@@ -137,32 +133,21 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
-
-    @IBAction func customizeButtonPressed(_ sender: Any) {
-        let sheet = UIAlertController(title: "Customization", message: nil, preferredStyle: .actionSheet)
-        sheet.addAction(UIAlertAction(title: "Fonts", style: .default, handler: { (UIAlertAction) in
-            self.performSegue(withIdentifier: "customizeFonts", sender: self)
-        }))
-        sheet.addAction(UIAlertAction(title: "Colors", style: .default, handler: { (a) in
-            //Show Colors Customzations
-        }))
-        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) in
-            sheet.dismiss(animated: true, completion: nil)
-        }))
-        sheet.popoverPresentationController?.sourceView = memeImageView
-        present(sheet, animated: true, completion: nil)
+    
+    
+    // MARK : Helper Methods
+    func generateMemedImage() -> UIImage {
+        UIGraphicsBeginImageContext(self.memeAreaView.frame.size)
+        self.memeAreaView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return memedImage
     }
     
-
-
-public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-    print(info)
-    if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-        memeImageView.image = image
-    }
-    picker.dismiss(animated: true, completion: nil)
-}
     
+    
+    
+    // MARK: UITextFieldDelegate Implementation
     public func textFieldDidBeginEditing(_ textField: UITextField){
         activeTextField = textField
         textField.text = ""
@@ -175,30 +160,14 @@ public func imagePickerController(_ picker: UIImagePickerController, didFinishPi
     }
     
     
-    func generateMemedImage() -> UIImage {
-        UIGraphicsBeginImageContext(self.memeAreaView.frame.size)
-        self.memeAreaView.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return memedImage
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "customizeFonts"{
-            if let ctrl = segue.destination as? CustomizeFontsViewController{
-                ctrl.meme = self.meme
-                ctrl.memeDelegate = self
-            }
+    // MARK: UIImagePickerControllerDelegate Implementation
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
+        print(info)
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            self.meme.originalImage = image
+            self.bindUi()
         }
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    
-    public func customizationDone(meme:Meme){
-        self.meme = meme
-        self.bindUi()
-    }
-    
-
 }
