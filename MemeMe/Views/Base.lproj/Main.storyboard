@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="W9x-nA-sbo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,10 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="yqT-zf-u8a">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="7kn-Qg-UEl">
+                                        <connections>
+                                            <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="eNB-er-4sf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uTN-xo-Kl1"/>
+                                    <barButtonItem title="Cancel" id="wB8-JB-Syg">
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="eFx-gR-CB5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMp-0E-22B">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qbx-WF-BiN">
+                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="qbx-WF-BiN">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
@@ -38,21 +54,21 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.04677283753" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Uji-3r-jt0" secondAttribute="bottom" constant="16" id="483-V0-goi"/>
                                     <constraint firstItem="PNg-24-oaZ" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="5fG-2u-tZw"/>
                                     <constraint firstAttribute="trailing" secondItem="Uji-3r-jt0" secondAttribute="trailing" id="OZk-za-Nwm"/>
                                     <constraint firstItem="Uji-3r-jt0" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="R6j-7n-9Dz"/>
-                                    <constraint firstAttribute="bottom" secondItem="qbx-WF-BiN" secondAttribute="bottom" id="fux-3D-CXb"/>
+                                    <constraint firstItem="qbx-WF-BiN" firstAttribute="bottom" secondItem="CMp-0E-22B" secondAttribute="bottom" id="fux-3D-CXb"/>
                                     <constraint firstItem="PNg-24-oaZ" firstAttribute="top" secondItem="CMp-0E-22B" secondAttribute="top" constant="16" id="gPp-zn-LM0"/>
                                     <constraint firstItem="qbx-WF-BiN" firstAttribute="top" secondItem="CMp-0E-22B" secondAttribute="top" id="mk9-qe-Drr"/>
-                                    <constraint firstAttribute="trailing" secondItem="qbx-WF-BiN" secondAttribute="trailing" id="oFu-e8-nKn"/>
+                                    <constraint firstItem="qbx-WF-BiN" firstAttribute="trailing" secondItem="CMp-0E-22B" secondAttribute="trailing" id="oFu-e8-nKn"/>
                                     <constraint firstAttribute="trailing" secondItem="PNg-24-oaZ" secondAttribute="trailing" id="yRj-H8-759"/>
                                     <constraint firstItem="qbx-WF-BiN" firstAttribute="leading" secondItem="CMp-0E-22B" secondAttribute="leading" id="z4k-Q7-OoV"/>
                                 </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-8y-bSh" userLabel="BottomToolbar">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Iw2-8y-bSh" userLabel="BottomToolbar">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oma-oc-w8w"/>
@@ -73,28 +89,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yqT-zf-u8a" secondAttribute="trailing" id="7bN-UG-dQ8"/>
+                            <constraint firstItem="yqT-zf-u8a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AZ9-WU-REK"/>
                             <constraint firstItem="CMp-0E-22B" firstAttribute="bottom" secondItem="Iw2-8y-bSh" secondAttribute="top" id="Jdi-WU-1Hg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iw2-8y-bSh" secondAttribute="trailing" id="SsK-7t-Ya5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Iw2-8y-bSh" secondAttribute="bottom" id="TbA-vN-zGf"/>
+                            <constraint firstItem="CMp-0E-22B" firstAttribute="top" secondItem="yqT-zf-u8a" secondAttribute="bottom" id="b78-4Y-BHR"/>
                             <constraint firstItem="Iw2-8y-bSh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cV9-bl-6S9"/>
                             <constraint firstItem="CMp-0E-22B" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gwC-ci-OYD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CMp-0E-22B" secondAttribute="trailing" id="hgf-Mf-TeH"/>
-                            <constraint firstItem="CMp-0E-22B" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vxQ-qe-UWN"/>
+                            <constraint firstItem="CMp-0E-22B" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hgf-Mf-TeH"/>
+                            <constraint firstItem="yqT-zf-u8a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="uLB-ao-6ff"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Okk-Pv-ZRB">
-                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="7kn-Qg-UEl">
-                            <connections>
-                                <action selector="shareButtonPressed:" destination="BYZ-38-t0r" id="eNB-er-4sf"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="wB8-JB-Syg">
-                            <connections>
-                                <action selector="cancelButtonPressed:" destination="BYZ-38-t0r" id="eFx-gR-CB5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Okk-Pv-ZRB"/>
                     <connections>
                         <outlet property="bottomTextField" destination="Uji-3r-jt0" id="7tj-iI-yFK"/>
                         <outlet property="cameraButton" destination="I5Y-14-wSP" id="40Z-oc-JqW"/>
@@ -118,9 +126,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hhe-OR-QsZ"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txz-M8-Xhw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
