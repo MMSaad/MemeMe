@@ -40,6 +40,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         formatTextFields()
     }
     
+    func bindData(){
+        self.meme.topMessage = self.topTextEditor.text ?? ""
+        self.meme.bottomMessage = self.bottomTextField.text ?? ""
+    }
+    
     func formatTextFields(){
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.darkGray,
@@ -118,6 +123,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 return
             }
         }
+        activityController.popoverPresentationController?.sourceView = self.memeImageView
         present(activityController, animated: true, completion: nil)
     }
     
@@ -130,6 +136,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBAction func cameraButtonPressed(_ sender: Any) {
         let camera = UIImagePickerController()
         camera.sourceType = .camera
+        camera.delegate  = self
         present(camera, animated: true, completion: nil)
     }
     
@@ -140,6 +147,10 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     @IBAction func customizeButtonPressed(_ sender: Any) {
+        //To hide keyboard
+        self.topTextEditor.resignFirstResponder()
+        self.bottomTextField.resignFirstResponder()
+        
         let sheet = UIAlertController(title: nil, message: "Customization", preferredStyle: .actionSheet)
         sheet.addAction(UIAlertAction(title: "Font Family", style: .default, handler: { (UIAlertAction) in
             if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
@@ -198,6 +209,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         activeTextField = nil
+        bindData()
         textField.resignFirstResponder()
         return true
     }
@@ -205,7 +217,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     // MARK: UIImagePickerControllerDelegate protocol Implementation
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-        print(info)
+        //print(info)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             self.meme.originalImage = image
             self.bindUi()
