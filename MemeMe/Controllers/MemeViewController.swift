@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents.MaterialBottomSheet
 
 class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate {
-
+    
     // MARK: Outlets
     @IBOutlet weak var memeAreaView: UIView!
     @IBOutlet weak var bottomTextField: UITextField!
@@ -37,7 +37,8 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.bottomTextField.text = self.meme.bottomMessage
         self.memeImageView.image = self.meme.originalImage
         self.shareMemeButton.isEnabled = self.meme.originalImage != nil
-        formatTextFields()
+        formatTextField(field: self.topTextEditor)
+        formatTextField(field: self.bottomTextField)
     }
     
     func bindData(){
@@ -45,23 +46,20 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.meme.bottomMessage = self.bottomTextField.text ?? ""
     }
     
-    func formatTextFields(){
+    func formatTextField(field:UITextField){
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.darkGray,
             NSAttributedString.Key.strokeWidth:  -3.0,
             NSAttributedString.Key.foregroundColor: self.meme.fontColor,
             NSAttributedString.Key.font: UIFont(name: meme.fontFamily, size: CGFloat(meme.fontSize))!
         ]
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextEditor.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .center
-        topTextEditor.textAlignment = .center
+        field.defaultTextAttributes = memeTextAttributes
+        field.textAlignment = .center
     }
     
     func setupTextFields(){
         bottomTextField.delegate = self
         topTextEditor.delegate = self
-        formatTextFields()
         bindUi()
     }
     
@@ -134,16 +132,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
-        let camera = UIImagePickerController()
-        camera.sourceType = .camera
-        camera.delegate  = self
-        present(camera, animated: true, completion: nil)
+        chooseImageFrom(Source: .camera)
     }
     
     @IBAction func albumButtonPressed(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
+        chooseImageFrom(Source: .photoLibrary)
     }
     
     @IBAction func customizeButtonPressed(_ sender: Any) {
@@ -185,6 +178,14 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     
     // MARK : Helper Methods
+    
+    func chooseImageFrom(Source:UIImagePickerController.SourceType){
+        let imageSelector = UIImagePickerController()
+        imageSelector.sourceType = Source
+        imageSelector.delegate  = self
+        present(imageSelector, animated: true, completion: nil)
+    }
+    
     func generateMemedImage() -> UIImage {
         UIGraphicsBeginImageContext(self.memeAreaView.frame.size)
         self.memeAreaView.layer.render(in: UIGraphicsGetCurrentContext()!)
@@ -209,15 +210,17 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         activeTextField = nil
-        bindData()
         textField.resignFirstResponder()
         return true
+    }
+    
+    public func textFieldDidEndEditing(_ textField: UITextField) {
+        bindData()
     }
     
     
     // MARK: UIImagePickerControllerDelegate protocol Implementation
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
-        //print(info)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             self.meme.originalImage = image
             self.bindUi()
@@ -228,17 +231,17 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: MemeDelegate protocol implementation
     public func fontFamilyChanged(newFont:String){
         self.meme.fontFamily = newFont
-        self.formatTextFields()
+        self.bindUi()
     }
     
     public  func fontSizeChanged(newFontSize:Float){
         self.meme.fontSize = newFontSize
-        self.formatTextFields()
+        self.bindUi()
     }
     
     public func colorChanged(color:UIColor){
         self.meme.fontColor = color
-        self.formatTextFields()
+        self.bindUi()
     }
     
 }
