@@ -115,6 +115,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     // MARK: UI Actions
     @IBAction func shareButtonPressed(_ sender: Any) {
+        bindData()
         let image =  generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
