@@ -122,6 +122,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             if completed {
                 self.meme.memeImage = image
                 MemesManager().saveMeme(meme: self.meme)
+                self.dismiss(animated: true, completion: nil)
                 return
             }
         }
