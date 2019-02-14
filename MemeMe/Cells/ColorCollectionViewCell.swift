@@ -11,8 +11,10 @@ import UIKit
 
 class ColorCollectionViewCell: UICollectionViewCell {
     
+    //Outlets
     @IBOutlet weak var view:UIView!
     
+    //Vars
     var color:UIColor?
     
     func bindUi(color:UIColor){

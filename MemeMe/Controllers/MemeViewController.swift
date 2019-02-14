@@ -28,7 +28,9 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40,fontColor:UIColor.white)
+        if self.meme == nil{
+            self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40,fontColor:UIColor.white)
+        }
         setupTextFields()
     }
     
@@ -117,7 +119,8 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
             if completed {
-                ///Save Image
+                self.meme.memeImage = image
+                MemesManager().saveMeme(meme: self.meme)
                 return
             }
         }
@@ -126,8 +129,9 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        self.meme.reset()
-        self.bindUi()
+//        self.meme.reset()
+//        self.bindUi()
+        self.dismiss(animated: true, completion: nil)
     }
     
     
