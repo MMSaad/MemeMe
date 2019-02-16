@@ -18,6 +18,7 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,6 +51,16 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.selectedMeme = MemesManager().getMemes()[indexPath.row]
         performSegue(withIdentifier: "gotoMemeDetails", sender: self)
     }
+    
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?{
+        let editRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Edit", handler:{action, indexpath in
+            self.selectedMeme = MemesManager().getMemes()[indexPath.row]
+            self.performSegue(withIdentifier: "openMemeEditor", sender: self)
+        });
+        editRowAction.backgroundColor = UIColor(red: 0.298, green: 0.851, blue: 0.3922, alpha: 1.0);
+        
+        return [ editRowAction];
+    }
 
     
     //MARK: Table View Datasource
@@ -72,6 +83,9 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.selectedMeme = nil
         performSegue(withIdentifier: "openMemeEditor", sender: self)
     }
+    
+ 
+    
     
     
 }
