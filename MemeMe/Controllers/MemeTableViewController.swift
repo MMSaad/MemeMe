@@ -36,13 +36,19 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
                 (segue.destination as! MemeViewController).meme = self.selectedMeme
             }
         }
+        
+        if segue.identifier == "gotoMemeDetails"{
+            if  segue.destination is MemeDetailsViewController{
+                (segue.destination as! MemeDetailsViewController).meme = self.selectedMeme
+            }
+        }
     }
  
     
     //MARK: Table View Delegate
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         self.selectedMeme = MemesManager().getMemes()[indexPath.row]
-        performSegue(withIdentifier: "openMemeEditor", sender: self)
+        performSegue(withIdentifier: "gotoMemeDetails", sender: self)
     }
 
     

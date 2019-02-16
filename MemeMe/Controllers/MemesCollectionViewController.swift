@@ -15,11 +15,17 @@ class MemesCollectionViewController: UIViewController,UICollectionViewDelegate,U
     
     //Outlets
     @IBOutlet weak var memeCollectionView: UICollectionView!
-
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let space:CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+        
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,20 +33,24 @@ class MemesCollectionViewController: UIViewController,UICollectionViewDelegate,U
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "openMemeEditor"{
+            if  segue.destination is MemeViewController{
+                (segue.destination as! MemeViewController).meme = self.selectedMeme
+            }
+        }
+        
+        if segue.identifier == "gotoMemeDetails"{
+            if  segue.destination is MemeDetailsViewController{
+                (segue.destination as! MemeDetailsViewController).meme = self.selectedMeme
+            }
+        }
     }
-    */
     
     //MARK: UICollectionView Delegate
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         self.selectedMeme = MemesManager().getMemes()[indexPath.row]
-        performSegue(withIdentifier: "openMemeEditor", sender: self)
+        performSegue(withIdentifier: "gotoMemeDetails", sender: self)
     }
     
     
