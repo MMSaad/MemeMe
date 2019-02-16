@@ -215,7 +215,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d2I-vR-hhI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Meme Details" id="cVE-01-kTd"/>
+                    <navigationItem key="navigationItem" title="Meme Details" id="cVE-01-kTd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="YVY-Ms-W0P">
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="NNU-6x-cWO" id="XVP-jf-o91"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="memeImageView" destination="rkE-qX-bsY" id="qyj-41-JRY"/>
                     </connections>
