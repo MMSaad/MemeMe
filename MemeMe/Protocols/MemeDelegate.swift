@@ -11,5 +11,5 @@ import UIKit
 protocol MemeDelegate {
     func fontFamilyChanged(newFont:String)
     func fontSizeChanged(newFontSize:Float)
-    func colorChanged(color:UIColor)
+//    func colorChanged(color:UIColor)
 }

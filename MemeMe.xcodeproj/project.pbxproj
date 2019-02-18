@@ -25,6 +25,7 @@
 		45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */; };
 		45F24AD721E2216800B60BA3 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD621E2216800B60BA3 /* ColorCollectionViewCell.swift */; };
 		45F24AD921E2224C00B60BA3 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD821E2224C00B60BA3 /* ColorPickerViewController.swift */; };
+		45FBC507221AC49100CDFB03 /* MemeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBC506221AC49100CDFB03 /* MemeDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeFontSizeViewController.swift; sourceTree = "<group>"; };
 		45F24AD621E2216800B60BA3 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		45F24AD821E2224C00B60BA3 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		45FBC506221AC49100CDFB03 /* MemeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDataModel.swift; sourceTree = "<group>"; };
 		A1C39776338B9D51ED9F809F /* Pods-MemeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B30D0969F6D5115735A243 /* Pods-MemeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 			children = (
 				455D9B9121DE04FA0035D99B /* Meme.swift */,
 				4500D8E122156C4F0043F158 /* MemesManager.swift */,
+				45FBC506221AC49100CDFB03 /* MemeDataModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -276,11 +279,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -302,6 +309,7 @@
 				4500D8E022156A1B0043F158 /* MemeTableViewController.swift in Sources */,
 				45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */,
 				4500D8E42215875F0043F158 /* MemeCollectionViewCell.swift in Sources */,
+				45FBC507221AC49100CDFB03 /* MemeDataModel.swift in Sources */,
 				45F24ACF21E210FB00B60BA3 /* CustomizeFontFamilyViewController.swift in Sources */,
 				455D9B9421DE05500035D99B /* MemeViewController.swift in Sources */,
 				4500D8DE2215692E0043F158 /* MemeTableViewCell.swift in Sources */,

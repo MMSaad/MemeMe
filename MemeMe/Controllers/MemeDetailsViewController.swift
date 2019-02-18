@@ -18,8 +18,10 @@ class MemeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let meme = meme{
-            self.memeImageView.image = meme.memeImage
+        if let image = meme?.memeImage{
+            self.memeImageView.image = image
+        }else{
+            self.memeImageView.image = MemesManager().loadImageFromDocument(name:"g\(meme!.id).jpg")
         }
         
     }
@@ -27,8 +29,8 @@ class MemeDetailsViewController: UIViewController {
 
     
     @IBAction func shareButtonPressed(_ sender: Any) {
-        if let meme = meme{
-        let image =  meme.memeImage
+        if let image = meme?.memeImage{
+        
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
             if completed {

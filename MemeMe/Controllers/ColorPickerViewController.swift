@@ -56,7 +56,7 @@ class ColorPickerViewController: UIViewController,UICollectionViewDelegate,UICol
     
     // MARK: Collectiomview delegate protocol implementation
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        self.memeDelegate.colorChanged(color:colors[indexPath.row])
+        //self.memeDelegate.colorChanged(color:colors[indexPath.row])
     }
 
 }

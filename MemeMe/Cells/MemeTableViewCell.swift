@@ -31,6 +31,8 @@ class MemeTableViewCell: UITableViewCell {
         self.bottomMemeLabel.text = meme.bottomMessage
         if let image = meme.memeImage{
             self.memeImageView.image = image
+        }else{
+            self.memeImageView.image = MemesManager().loadImageFromDocument(name:"g\(meme.id).jpg")
         }
     }
 

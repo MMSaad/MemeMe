@@ -15,6 +15,8 @@ class MemeCollectionViewCell: UICollectionViewCell {
     func bindData(meme:Meme){
         if let image = meme.memeImage{
             self.memeImageView.image = image
+        }else{
+            self.memeImageView.image = MemesManager().loadImageFromDocument(name:"g\(meme.id).jpg")
         }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 struct Meme {
     
+    var id:Double
     var topMessage:String
     var bottomMessage:String
     
@@ -18,7 +19,7 @@ struct Meme {
     
     var fontFamily:String
     var fontSize:Float
-    var fontColor:UIColor
+
     
     mutating func reset(){
         bottomMessage = "TEXT GOES HERE"
@@ -27,6 +28,5 @@ struct Meme {
         originalImage = nil
         fontFamily = "HelveticaNeue-CondensedBlack"
         fontSize = 40
-        fontColor = UIColor.white
     }
 }

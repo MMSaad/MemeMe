@@ -30,7 +30,8 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.meme == nil{
-            self.meme = Meme(topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40,fontColor:UIColor.white)
+            self.meme = Meme(id:0,topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40)
+
         }
         setupTextFields()
     }
@@ -39,6 +40,10 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.topTextEditor.text = self.meme.topMessage
         self.bottomTextField.text = self.meme.bottomMessage
         self.memeImageView.image = self.meme.originalImage
+        if self.meme.originalImage == nil && self.meme.id > 0{
+            self.meme.originalImage = MemesManager().loadImageFromDocument(name:"\(meme.id).jpg")
+            self.memeImageView.image = self.meme.originalImage
+        }
         self.shareMemeButton.isEnabled = self.meme.originalImage != nil
         formatTextField(field: self.topTextEditor)
         formatTextField(field: self.bottomTextField)
@@ -53,7 +58,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         let memeTextAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.strokeColor: UIColor.darkGray,
             NSAttributedString.Key.strokeWidth:  -3.0,
-            NSAttributedString.Key.foregroundColor: self.meme.fontColor,
+            NSAttributedString.Key.foregroundColor: UIColor.white,
             NSAttributedString.Key.font: UIFont(name: meme.fontFamily, size: CGFloat(meme.fontSize))!
         ]
         field.defaultTextAttributes = memeTextAttributes
@@ -164,13 +169,13 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 self.showBottomSheet(controller: ctrl)
             }
         }))
-        sheet.addAction(UIAlertAction(title: "Font Color", style: .default, handler: { (a) in
-            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
-                ctrl.selectedColor = self.meme.fontColor
-                ctrl.memeDelegate = self
-                self.showBottomSheet(controller: ctrl)
-            }
-        }))
+//        sheet.addAction(UIAlertAction(title: "Font Color", style: .default, handler: { (a) in
+//            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
+//                ctrl.selectedColor = self.meme.fontColor
+//                ctrl.memeDelegate = self
+//                self.showBottomSheet(controller: ctrl)
+//            }
+//        }))
         
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) in
             sheet.dismiss(animated: true, completion: nil)
@@ -261,9 +266,9 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.bindUi()
     }
     
-    public func colorChanged(color:UIColor){
-        self.meme.fontColor = color
-        self.bindUi()
-    }
+//    public func colorChanged(color:UIColor){
+//        self.meme.fontColor = color
+//        self.bindUi()
+//    }
     
 }
