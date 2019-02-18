@@ -8,8 +8,9 @@
 
 import UIKit
 import MaterialComponents.MaterialBottomSheet
+import CropViewController
 
-class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate {
+class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate,CropViewControllerDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var memeAreaView: UIView!
@@ -131,8 +132,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-//        self.meme.reset()
-//        self.bindUi()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -228,10 +227,27 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     // MARK: UIImagePickerControllerDelegate protocol Implementation
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]){
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            self.meme.originalImage = image
-            self.bindUi()
+            picker.dismiss(animated: true, completion: nil)
+            let cropViewController = CropViewController(croppingStyle: .default, image: image)
+            cropViewController.delegate = self
+            present(cropViewController, animated: true, completion: nil)
+            
+
         }
-        picker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    // MARK: CropViewControllerDelegate protocol implementation
+   public func cropViewController(_ cropViewController: CropViewController, didCropImageToRect rect: CGRect, angle: Int){
+    cropViewController.dismissAnimatedFrom(self, toView: self.memeImageView, toFrame: self.memeImageView.frame, setup: nil, completion: nil)
+    }
+    
+
+   public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+                    self.meme.originalImage = image
+                    self.bindUi()
+        
     }
     
     // MARK: MemeDelegate protocol implementation

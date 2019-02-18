@@ -9,6 +9,7 @@
 import UIKit
 
 struct Meme {
+    
     var topMessage:String
     var bottomMessage:String
     
