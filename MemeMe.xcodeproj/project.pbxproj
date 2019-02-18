@@ -47,7 +47,7 @@
 		45F24AD121E211DC00B60BA3 /* MemeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDelegate.swift; sourceTree = "<group>"; };
 		45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeFontSizeViewController.swift; sourceTree = "<group>"; };
 		45FBC506221AC49100CDFB03 /* MemeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDataModel.swift; sourceTree = "<group>"; };
-		45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilesHelper.swift; path = MemeMe/Data/FilesHelper.swift; sourceTree = SOURCE_ROOT; };
+		45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilesHelper.swift; path = MemeMe/Utilities/FilesHelper.swift; sourceTree = SOURCE_ROOT; };
 		A1C39776338B9D51ED9F809F /* Pods-MemeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B30D0969F6D5115735A243 /* Pods-MemeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,14 +73,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		452C122921DFF79A009B00C4 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		455D9B6F21DE000F0035D99B = {
 			isa = PBXGroup;
 			children = (
@@ -102,9 +94,9 @@
 		455D9B7A21DE000F0035D99B /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
+				45FBC50A221AD20C00CDFB03 /* Utilities */,
 				45F24AD521E2214200B60BA3 /* Cells */,
 				45F24AD021E211CE00B60BA3 /* Protocols */,
-				452C122921DFF79A009B00C4 /* Helpers */,
 				455D9B9021DE04E80035D99B /* Data */,
 				455D9B8F21DE00A20035D99B /* Utils */,
 				455D9B8E21DE00910035D99B /* Views */,
@@ -170,6 +162,14 @@
 				4500D8E32215875F0043F158 /* MemeCollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		45FBC50A221AD20C00CDFB03 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		F7036C345F47ED33576601B5 /* Frameworks */ = {
