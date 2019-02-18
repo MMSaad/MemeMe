@@ -16,9 +16,9 @@ class MemesManager: NSObject {
     func getMemes() -> [Meme]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if(appDelegate.memes.count == 0){
-        let realm = try! Realm()
-        
-        let memes =  realm.objects(MemeDataModel.self)
+            let realm = try! Realm()
+            
+            let memes =  realm.objects(MemeDataModel.self)
             for meme in memes{
                 appDelegate.memes.append(meme.toMeme())
             }
@@ -27,20 +27,28 @@ class MemesManager: NSObject {
     }
     
     // Save a New Meme
-    func saveMeme(meme:Meme){
-        let realm = try! Realm()
+    func saveMeme(meme:Meme)-> Bool{
+        
         var newMeme = meme
         newMeme.id = Date().timeIntervalSince1970
-        let memeModel = MemeDataModel().fromMeme(meme:newMeme)
-        try! realm.write {
-            realm.add(memeModel)
-        }
+        
         //Save Original Image
-        FilesHelper().saveImageDocumentDirectory(image: newMeme.originalImage!, name: "\(newMeme.id).jpg")
+        let originalSaved = FilesHelper().saveImageDocumentDirectory(image: newMeme.originalImage!, name: "\(newMeme.id).jpg")
+        
         //Save Meme Image
-        FilesHelper().saveImageDocumentDirectory(image: newMeme.memeImage!, name:"g\(newMeme.id).jpg")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.memes.append(newMeme)
+        let generatedSaved = FilesHelper().saveImageDocumentDirectory(image: newMeme.memeImage!, name:"g\(newMeme.id).jpg")
+        
+        if originalSaved && generatedSaved {
+            let realm = try! Realm()
+            let memeModel = MemeDataModel().fromMeme(meme:newMeme)
+            try! realm.write {
+                realm.add(memeModel)
+            }
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.memes.append(newMeme)
+            return true
+        }
+        return false
     }
     
     

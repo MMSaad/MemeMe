@@ -12,12 +12,12 @@ import UIKit
 class FilesHelper: NSObject {
     
     // Save Image to Document Library
-    func saveImageDocumentDirectory(image:UIImage,name:String){
+    func saveImageDocumentDirectory(image:UIImage,name:String) -> Bool{
         let fileManager = FileManager.default
         let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(name)
         
         let imageData = image.jpegData(compressionQuality: 1.0)
-        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+       return fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
     }
     
     // Read Image from Document Library

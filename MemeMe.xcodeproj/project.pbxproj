@@ -25,6 +25,8 @@
 		45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */; };
 		45FBC507221AC49100CDFB03 /* MemeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBC506221AC49100CDFB03 /* MemeDataModel.swift */; };
 		45FBC509221ACEFB00CDFB03 /* FilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */; };
+		45FBC50C221ADA4600CDFB03 /* DialogsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBC50B221ADA4600CDFB03 /* DialogsHelper.swift */; };
+		45FBC50E221ADC8A00CDFB03 /* ActionSheetDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBC50D221ADC8A00CDFB03 /* ActionSheetDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		45F24AD321E214A600B60BA3 /* CustomizeFontSizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeFontSizeViewController.swift; sourceTree = "<group>"; };
 		45FBC506221AC49100CDFB03 /* MemeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeDataModel.swift; sourceTree = "<group>"; };
 		45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilesHelper.swift; path = MemeMe/Utilities/FilesHelper.swift; sourceTree = SOURCE_ROOT; };
+		45FBC50B221ADA4600CDFB03 /* DialogsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsHelper.swift; sourceTree = "<group>"; };
+		45FBC50D221ADC8A00CDFB03 /* ActionSheetDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetDelegate.swift; sourceTree = "<group>"; };
 		A1C39776338B9D51ED9F809F /* Pods-MemeMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.debug.xcconfig"; sourceTree = "<group>"; };
 		B6B30D0969F6D5115735A243 /* Pods-MemeMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MemeMe/Pods-MemeMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				45F24AD121E211DC00B60BA3 /* MemeDelegate.swift */,
+				45FBC50D221ADC8A00CDFB03 /* ActionSheetDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				45FBC508221ACEFB00CDFB03 /* FilesHelper.swift */,
+				45FBC50B221ADA4600CDFB03 /* DialogsHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -299,10 +305,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F24AD221E211DC00B60BA3 /* MemeDelegate.swift in Sources */,
+				45FBC50C221ADA4600CDFB03 /* DialogsHelper.swift in Sources */,
 				455D9B9221DE04FA0035D99B /* Meme.swift in Sources */,
 				45E5C97C2218518D0041905F /* MemeDetailsViewController.swift in Sources */,
 				4500D8E222156C4F0043F158 /* MemesManager.swift in Sources */,
 				4500D8E022156A1B0043F158 /* MemeTableViewController.swift in Sources */,
+				45FBC50E221ADC8A00CDFB03 /* ActionSheetDelegate.swift in Sources */,
 				45F24AD421E214A600B60BA3 /* CustomizeFontSizeViewController.swift in Sources */,
 				4500D8E42215875F0043F158 /* MemeCollectionViewCell.swift in Sources */,
 				45FBC507221AC49100CDFB03 /* MemeDataModel.swift in Sources */,

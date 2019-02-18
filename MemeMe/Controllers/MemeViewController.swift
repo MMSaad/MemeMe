@@ -10,7 +10,7 @@ import UIKit
 import MaterialComponents.MaterialBottomSheet
 import CropViewController
 
-class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate,CropViewControllerDelegate {
+class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,MemeDelegate,CropViewControllerDelegate,ActionSheetDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var memeAreaView: UIView!
@@ -81,7 +81,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
@@ -90,7 +89,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     // MARK: Keyboard Notifications
     func subscribeToKeyboardNotifications() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -127,7 +125,11 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
             if completed {
                 self.meme.memeImage = image
-                MemesManager().saveMeme(meme: self.meme)
+                let success = MemesManager().saveMeme(meme: self.meme)
+                if !success{
+                    let alert = DialogsHelper().getErrorAlert(title:"Error", message:"Faild to save Meme")
+                    self.present(alert, animated: true, completion: nil)
+                }
                 self.dismiss(animated: true, completion: nil)
                 return
             }
@@ -154,31 +156,30 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.topTextEditor.resignFirstResponder()
         self.bottomTextField.resignFirstResponder()
         
-        let sheet = UIAlertController(title: nil, message: "Customization", preferredStyle: .actionSheet)
-        sheet.addAction(UIAlertAction(title: "Font Family", style: .default, handler: { (UIAlertAction) in
-            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
-                ctrl.fontName = self.meme.fontFamily
-                ctrl.memeDelegate = self
-                self.showBottomSheet(controller: ctrl)
-            }
-        }))
-        sheet.addAction(UIAlertAction(title: "Font size", style: .default, handler: { (a) in
-            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
-                ctrl.fontSize = self.meme.fontSize
-                ctrl.memeDelegate = self
-                self.showBottomSheet(controller: ctrl)
-            }
-        }))
+        let buttons = ["Font Family","Font Size"]
+        let sheet = DialogsHelper().getActionSheet(title:"Customization",buttons:buttons,delegate:self)
         
-        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) in
-            sheet.dismiss(animated: true, completion: nil)
-        }))
         sheet.popoverPresentationController?.sourceView = memeImageView
         present(sheet, animated: true, completion: nil)
         
     }
     
-    
+    // MARK: Action Sheet Delegate Implementation
+    public func buttonClicked(title:String){
+        if title == "Font Family"{
+            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontFamilyBottomSheet") as? CustomizeFontFamilyViewController{
+                ctrl.fontName = self.meme.fontFamily
+                ctrl.memeDelegate = self
+                self.showBottomSheet(controller: ctrl)
+            }
+        }else if title == "Font Size"{
+            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontSizeBottomSheet") as? CustomizeFontSizeViewController{
+                ctrl.fontSize = self.meme.fontSize
+                ctrl.memeDelegate = self
+                self.showBottomSheet(controller: ctrl)
+            }
+        }
+    }
     
     // MARK : Helper Methods
     
