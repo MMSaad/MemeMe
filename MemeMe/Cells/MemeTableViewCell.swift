@@ -8,32 +8,25 @@
 
 import UIKit
 
+// Memes Table View Custom Cell
 class MemeTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
+    
+    // MARK: Outlets
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topMemeLabel: UILabel!
     @IBOutlet weak var bottomMemeLabel: UILabel!
     
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    // Bind Cell Data to Meme
     func bindData(meme:Meme){
         self.topMemeLabel.text = meme.topMessage
         self.bottomMemeLabel.text = meme.bottomMessage
         if let image = meme.memeImage{
             self.memeImageView.image = image
         }else{
-            self.memeImageView.image = MemesManager().loadImageFromDocument(name:"g\(meme.id).jpg")
+            self.memeImageView.image = FilesHelper().loadImageFromDocument(name:"g\(meme.id).jpg")
         }
     }
-
+    
 }

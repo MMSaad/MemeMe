@@ -9,7 +9,10 @@
 import UIKit
 import RealmSwift
 
+// Manage Memes Data
 class MemesManager: NSObject {
+    
+    // Get All Memes
     func getMemes() -> [Meme]{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if(appDelegate.memes.count == 0){
@@ -23,6 +26,7 @@ class MemesManager: NSObject {
         return appDelegate.memes
     }
     
+    // Save a New Meme
     func saveMeme(meme:Meme){
         let realm = try! Realm()
         var newMeme = meme
@@ -32,30 +36,12 @@ class MemesManager: NSObject {
             realm.add(memeModel)
         }
         //Save Original Image
-        saveImageDocumentDirectory(image: newMeme.originalImage!, name: "\(newMeme.id).jpg")
+        FilesHelper().saveImageDocumentDirectory(image: newMeme.originalImage!, name: "\(newMeme.id).jpg")
         //Save Meme Image
-        saveImageDocumentDirectory(image: newMeme.memeImage!, name:"g\(newMeme.id).jpg")
+        FilesHelper().saveImageDocumentDirectory(image: newMeme.memeImage!, name:"g\(newMeme.id).jpg")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.memes.append(newMeme)
     }
     
-    func saveImageDocumentDirectory(image:UIImage,name:String){
-        let fileManager = FileManager.default
-        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(name)
-      
-        let imageData = image.jpegData(compressionQuality: 1.0)
-        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
-    }
     
-    func loadImageFromDocument(name:String)->UIImage{
-        
-        let paths               = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        if let dirPath          = paths.first
-        {
-            let imageURL = URL(fileURLWithPath: dirPath).appendingPathComponent(name)
-            return UIImage(contentsOfFile: imageURL.path) ?? UIImage()
-            
-        }
-        return UIImage()
-    }
 }

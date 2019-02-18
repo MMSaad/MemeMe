@@ -31,7 +31,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         super.viewDidLoad()
         if self.meme == nil{
             self.meme = Meme(id:0,topMessage:"TEXT GOES HERE",bottomMessage:"TEXT GOES HERE",originalImage:self.memeImageView.image,memeImage:nil,fontFamily:"HelveticaNeue-CondensedBlack",fontSize:40)
-
+            
         }
         setupTextFields()
     }
@@ -41,7 +41,7 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.bottomTextField.text = self.meme.bottomMessage
         self.memeImageView.image = self.meme.originalImage
         if self.meme.originalImage == nil && self.meme.id > 0{
-            self.meme.originalImage = MemesManager().loadImageFromDocument(name:"\(meme.id).jpg")
+            self.meme.originalImage = FilesHelper().loadImageFromDocument(name:"\(meme.id).jpg")
             self.memeImageView.image = self.meme.originalImage
         }
         self.shareMemeButton.isEnabled = self.meme.originalImage != nil
@@ -169,13 +169,6 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                 self.showBottomSheet(controller: ctrl)
             }
         }))
-//        sheet.addAction(UIAlertAction(title: "Font Color", style: .default, handler: { (a) in
-//            if let ctrl = self.storyboard?.instantiateViewController(withIdentifier: "FontColorBottomSheet") as? ColorPickerViewController{
-//                ctrl.selectedColor = self.meme.fontColor
-//                ctrl.memeDelegate = self
-//                self.showBottomSheet(controller: ctrl)
-//            }
-//        }))
         
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (a) in
             sheet.dismiss(animated: true, completion: nil)
@@ -237,21 +230,21 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
             cropViewController.delegate = self
             present(cropViewController, animated: true, completion: nil)
             
-
+            
         }
         
     }
     
     
     // MARK: CropViewControllerDelegate protocol implementation
-   public func cropViewController(_ cropViewController: CropViewController, didCropImageToRect rect: CGRect, angle: Int){
-    cropViewController.dismissAnimatedFrom(self, toView: self.memeImageView, toFrame: self.memeImageView.frame, setup: nil, completion: nil)
+    public func cropViewController(_ cropViewController: CropViewController, didCropImageToRect rect: CGRect, angle: Int){
+        cropViewController.dismissAnimatedFrom(self, toView: self.memeImageView, toFrame: self.memeImageView.frame, setup: nil, completion: nil)
     }
     
-
-   public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-                    self.meme.originalImage = image
-                    self.bindUi()
+    
+    public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        self.meme.originalImage = image
+        self.bindUi()
         
     }
     
@@ -265,10 +258,5 @@ class MemeViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         self.meme.fontSize = newFontSize
         self.bindUi()
     }
-    
-//    public func colorChanged(color:UIColor){
-//        self.meme.fontColor = color
-//        self.bindUi()
-//    }
     
 }

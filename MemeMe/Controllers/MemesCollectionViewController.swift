@@ -25,14 +25,14 @@ class MemesCollectionViewController: UIViewController,UICollectionViewDelegate,U
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.memeCollectionView.reloadData()
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openMemeEditor"{
             if  segue.destination is MemeViewController{
@@ -60,7 +60,7 @@ class MemesCollectionViewController: UIViewController,UICollectionViewDelegate,U
     }
     
     
- 
+    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = memeCollectionView.dequeueReusableCell(withReuseIdentifier: "memeCollectionImage", for: indexPath) as? MemeCollectionViewCell
         if let cell = cell{
@@ -70,7 +70,7 @@ class MemesCollectionViewController: UIViewController,UICollectionViewDelegate,U
         }
         return UICollectionViewCell()
     }
-
+    
     @IBAction func addMemeButtonPressed(_ sender: Any) {
         self.selectedMeme = nil
         performSegue(withIdentifier: "openMemeEditor", sender: self)

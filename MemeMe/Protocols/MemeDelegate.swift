@@ -8,8 +8,11 @@
 
 import UIKit
 
+// Delegate for Meme Editor Callback
 protocol MemeDelegate {
+    // Font Family Had been Changed
     func fontFamilyChanged(newFont:String)
+    
+    //Font Size Had been Changed
     func fontSizeChanged(newFontSize:Float)
-//    func colorChanged(color:UIColor)
 }

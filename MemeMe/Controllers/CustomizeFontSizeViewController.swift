@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomizeFontSizeViewController: UIViewController {
-
+    
     // MARK: Outlets
     @IBOutlet weak var fontSizeSlider: UISlider!
     
@@ -38,5 +38,5 @@ class CustomizeFontSizeViewController: UIViewController {
     
     
     
-
+    
 }

@@ -9,16 +9,20 @@
 import UIKit
 import RealmSwift
 
+
+//Meme Data Model to be saved/retrived from Realm Database
 class MemeDataModel: Object {
     
- 
-        
-        @objc dynamic var id:Double = 0
-        @objc dynamic var topMessage:String = "TEXT GOES HERE"
-        @objc dynamic var bottomMessage:String = "TEXT GOES HERE"
-        @objc dynamic var fontFamily:String = "HelveticaNeue-CondensedBlack"
-        @objc dynamic var fontSize:Float = 40
-        
+    
+    // MARK: Properties
+    @objc dynamic var id:Double = 0
+    @objc dynamic var topMessage:String = "TEXT GOES HERE"
+    @objc dynamic var bottomMessage:String = "TEXT GOES HERE"
+    @objc dynamic var fontFamily:String = "HelveticaNeue-CondensedBlack"
+    @objc dynamic var fontSize:Float = 40
+    
+    
+    
     func toMeme() -> Meme{
         return Meme(id:self.id,topMessage:self.topMessage,bottomMessage:self.bottomMessage,originalImage:nil,memeImage:nil,fontFamily:self.fontFamily,fontSize:self.fontSize)
     }
@@ -32,6 +36,6 @@ class MemeDataModel: Object {
         model.fontSize = meme.fontSize
         return model
     }
-
+    
     
 }

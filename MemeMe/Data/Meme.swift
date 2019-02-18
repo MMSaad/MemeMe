@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 struct Meme {
     
     var id:Double
@@ -19,7 +20,7 @@ struct Meme {
     
     var fontFamily:String
     var fontSize:Float
-
+    
     
     mutating func reset(){
         bottomMessage = "TEXT GOES HERE"

@@ -8,15 +8,18 @@
 
 import UIKit
 
+// Meme Collection View Custom Cell
 class MemeCollectionViewCell: UICollectionViewCell {
- 
+    
+    // MARK: Outlets
     @IBOutlet weak var memeImageView: UIImageView!
     
+    // Bind Cell to Meme
     func bindData(meme:Meme){
         if let image = meme.memeImage{
             self.memeImageView.image = image
         }else{
-            self.memeImageView.image = MemesManager().loadImageFromDocument(name:"g\(meme.id).jpg")
+            self.memeImageView.image = FilesHelper().loadImageFromDocument(name:"g\(meme.id).jpg")
         }
     }
 }

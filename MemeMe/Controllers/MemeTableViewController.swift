@@ -9,7 +9,7 @@
 import UIKit
 
 class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-
+    
     //Vars
     var selectedMeme:Meme?
     
@@ -21,16 +21,16 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.memeTableView.reloadData()
     }
     
-
- 
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "openMemeEditor"{
             if  segue.destination is MemeViewController{
@@ -44,7 +44,7 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
             }
         }
     }
- 
+    
     
     //MARK: Table View Delegate
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -61,13 +61,13 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         return [ editRowAction];
     }
-
+    
     
     //MARK: Table View Datasource
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = memeTableView.dequeueReusableCell(withIdentifier: "memeTableImage") as? MemeTableViewCell
         if let cell = cell{
-        let meme = MemesManager().getMemes()[indexPath.row]
+            let meme = MemesManager().getMemes()[indexPath.row]
             cell.bindData(meme: meme)
             return cell
         }
@@ -76,7 +76,7 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-       return MemesManager().getMemes().count
+        return MemesManager().getMemes().count
     }
     
     @IBAction func addMemeButtonPressed(_ sender: Any) {
@@ -84,7 +84,7 @@ class MemeTableViewController: UIViewController,UITableViewDelegate,UITableViewD
         performSegue(withIdentifier: "openMemeEditor", sender: self)
     }
     
- 
+    
     
     
     

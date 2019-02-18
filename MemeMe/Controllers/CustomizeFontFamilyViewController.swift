@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
-
+    
     // MARK: Outlets
     @IBOutlet weak var fontsPicker: UIPickerView!
     
@@ -20,7 +20,7 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         loadFonts()
+        loadFonts()
     }
     
     /**
@@ -38,7 +38,7 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
         }
     }
     
-
+    
     // MARK: PickerView Data source protocol implementation
     public func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
@@ -55,11 +55,11 @@ class CustomizeFontFamilyViewController: UIViewController,UIPickerViewDataSource
     }
     
     
-  
+    
     // MARK: PickerView Delegate protocol implementation
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         self.fontName = fontList[row]
         memeDelegate.fontFamilyChanged(newFont: self.fontName)
     }
-
+    
 }
